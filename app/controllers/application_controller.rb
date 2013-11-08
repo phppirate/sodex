@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   class ApplicationController < ActionController::Base
-  USER, PASSWORD = User.last.email, User.last.password if User.count != nil
- 
-  before_filter :authentication_check
+  if User.count !< 0 || User.count != nil
+    USER, PASSWORD = User.last.email, User.last.password
+    before_filter :authentication_check
+  end
 
  
   private
